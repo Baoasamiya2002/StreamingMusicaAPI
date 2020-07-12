@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/pxk/Documentos/o8/APP/ProyectoAPI/ApiRest.csproj": {}
+    "/home/crower/Escritorio/APIstreaming/StreamingMusicaAPI/ApiRest.csproj": {}
   },
   "projects": {
-    "/home/pxk/Documentos/o8/APP/ProyectoAPI/ApiRest.csproj": {
+    "/home/crower/Escritorio/APIstreaming/StreamingMusicaAPI/ApiRest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pxk/Documentos/o8/APP/ProyectoAPI/ApiRest.csproj",
+        "projectUniqueName": "/home/crower/Escritorio/APIstreaming/StreamingMusicaAPI/ApiRest.csproj",
         "projectName": "ApiRest",
-        "projectPath": "/home/pxk/Documentos/o8/APP/ProyectoAPI/ApiRest.csproj",
-        "packagesPath": "/home/pxk/.nuget/packages/",
-        "outputPath": "/home/pxk/Documentos/o8/APP/ProyectoAPI/obj/",
+        "projectPath": "/home/crower/Escritorio/APIstreaming/StreamingMusicaAPI/ApiRest.csproj",
+        "packagesPath": "/home/crower/.nuget/packages/",
+        "outputPath": "/home/crower/Escritorio/APIstreaming/StreamingMusicaAPI/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/home/pxk/.nuget/NuGet/NuGet.Config"
+          "/home/crower/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -76,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.301/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
         }
       }
     }
