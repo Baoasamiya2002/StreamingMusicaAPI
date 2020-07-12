@@ -31,7 +31,7 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public IActionResult getCalificacionById(int id)
         {
             var calificacion = _contexto.Calificaciones.FirstOrDefault(calificacionBD => calificacionBD.Id == id);

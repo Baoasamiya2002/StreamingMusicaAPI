@@ -37,7 +37,7 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public IActionResult getAlbumById(int id)
         {
             var album = _contexto.Albums.FirstOrDefault(albumBD => albumBD.Id == id);

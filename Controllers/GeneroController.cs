@@ -37,7 +37,7 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public IActionResult getGeneroById(int id)
         {
             var genero = _contexto.Generos.FirstOrDefault(generoBD => generoBD.Id == id);

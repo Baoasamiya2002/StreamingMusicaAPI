@@ -37,7 +37,7 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public IActionResult getArtistaById(int id)
         {
             var artista = _contexto.Artistas.FirstOrDefault(artistaBD => artistaBD.Id == id);
