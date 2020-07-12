@@ -30,6 +30,14 @@ namespace ApiRest.Controllers
             return Ok(list);
         }
 
+        [HttpGet]
+        [Route("buscar/{palabra}")]
+        public IActionResult BuscarListas_reproduccion(String palabra)
+        {
+            var list = _contexto.Listas_Reproduccion.Where(listBD => listBD.Nombre_lista.Contains(palabra));            
+            return Ok(list);
+        }
+
         //REGRESA LAS LISTAS DE REPRODUCCION SEGUN EL USUARIO
         [HttpGet]
         [Route("listasByUser/{idUsuario}")]
@@ -45,7 +53,7 @@ namespace ApiRest.Controllers
         {
             _contexto.Listas_Reproduccion.Add(lista);
             _contexto.SaveChanges();
-        }
+        }        
 
         [HttpDelete]
         [Route("eliminarLista/{id}")]
