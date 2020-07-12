@@ -58,7 +58,7 @@ namespace ApiRest.Controllers
         [Route("{id}")]
         public IActionResult getCancionById(int id)
         {
-            var cancion = _contexto.Canciones.FirstOrDefault(cancionBD => cancionBD.Id == id);
+            var cancion = _contexto.Canciones.Find(id);
             if (cancion == null)
             {
                 return NotFound();
