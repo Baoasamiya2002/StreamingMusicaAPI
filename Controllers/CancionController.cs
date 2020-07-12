@@ -15,8 +15,7 @@ namespace ApiRest.Controllers
     public class CancionController : ControllerBase
     {
         private readonly StreamingMusicaContext _contexto;
-
-        List<Cancion> canciones { set; get;}
+        
 
         
     }
