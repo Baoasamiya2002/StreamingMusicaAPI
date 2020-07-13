@@ -50,7 +50,18 @@ namespace ApiRest.Controllers
         [Route("busqueda/{palabra}")]
         public IActionResult getCanciones(string palabra)
         {
-            var canciones = _contexto.Canciones.Where(cancionBD => cancionBD.Nombre_cancion.Contains(palabra)).ToList();
+            var canciones = _contexto.Canciones.
+            Join(
+                _contexto.Albums,
+                cancionBD => cancionBD.AlbumId,
+                albumBD => albumBD.Id,
+                (cancionBD, albumBD) => new
+                {
+                    Id = cancionBD.Id,
+                    Nombre_cancion = cancionBD.Nombre_cancion,
+                    Album = albumBD.Nombre_album
+                }).
+                Where(cancionBD => cancionBD.Nombre_cancion.Contains(palabra)).ToList();
             return Ok(canciones);
         }
 
