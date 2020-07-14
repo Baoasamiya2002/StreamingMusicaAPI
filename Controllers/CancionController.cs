@@ -21,6 +21,14 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
+        [Route("")]
+        public IActionResult getCanciones()
+        {
+            var canciones = _contexto.Canciones.ToList();
+            return Ok(canciones);
+        }
+
+        [HttpGet]
         [Route("genero/{idGenero}")]
         public IActionResult getCancionesPorGenero(int idGenero)
         {
@@ -32,10 +40,8 @@ namespace ApiRest.Controllers
         [Route("listaReproduccion/{idLista}")]
         public IActionResult getCancionesPorLista(int idLista)
         {
-            var cancionesId = _contexto.CancionLista_reproduccion.
-                Where(listaBD => listaBD.Lista_reproduccionId == idLista).
-                Select(listaBD => listaBD.CancionId).ToList();
-            return Ok(cancionesId);
+            var cancionesLista = _contexto.CancionLista_reproduccion.ToList();
+            return Ok(cancionesLista);
         } 
 
         [HttpGet]
@@ -66,10 +72,14 @@ namespace ApiRest.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("byId/{id}")]
         public IActionResult getCancionById(int id)
         {
-            var cancion = _contexto.Canciones.Find(id);
+            var cancion = _contexto.Canciones.Find(id);            
+            Byte[] bytes = System.IO.File.ReadAllBytes(cancion.ruta);
+            String file = Convert.ToBase64String(bytes);
+            cancion.cancion64 = file;
+
             if (cancion == null)
             {
                 return NotFound();
@@ -81,12 +91,31 @@ namespace ApiRest.Controllers
         [Route("crear")]
         public IActionResult setCancion(Cancion cancion)
         {
-            _contexto.Canciones.Add(cancion);
+            var ruta = "C:/Users/edson/Desktop/cancionesServer/";
+            Cancion cancionAbd = cancion;
+            
+            byte [] cancionbytes = Convert.FromBase64String(cancion.cancion64);
+            System.IO.File.WriteAllBytes(ruta + cancionAbd.Nombre_cancion + ".mp3", cancionbytes);
+
+            cancionAbd.cancion64 = "";
+            cancionAbd.ruta = ruta + cancionAbd.Nombre_cancion + ".mp3";
+            _contexto.Canciones.Add(cancionAbd);
+
+
             _contexto.SaveChanges();   
             CreatedAtAction(nameof(getCancionById), new { cancion.Id }, cancion);
             var nuevoCancion = new Cancion();
             nuevoCancion.Id = cancion.Id;
             return Ok(nuevoCancion);
+        }
+
+        [HttpGet]
+        [Route("archivoCancion/{cancion}")]
+        public void archivoCancion(String cancion)        
+        {
+            Console.WriteLine(cancion);
+            byte [] cancionbytes = Convert.FromBase64String(cancion);
+            System.IO.File.WriteAllBytes("C:/Users/edson/Desktop/cancionesServer/prueba.mp3", cancionbytes);
         }
     }
 }

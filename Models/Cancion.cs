@@ -13,6 +13,8 @@ namespace ApiRest.Models
         public int AlbumId { set; get; }
         public int ArtistaId { set; get; }
         public int GeneroId { set; get; }
+        public String cancion64 { set; get; }
+        public String ruta { set; get; }
         [JsonIgnore]
         public virtual List<CancionLista_reproduccion> CancionListas_reproduccion { set; get;}
     }

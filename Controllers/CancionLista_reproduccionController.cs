@@ -20,6 +20,22 @@ namespace ApiRest.Controllers
             _contexto = contexto;
         }
 
+        [HttpGet]
+        [Route("")]
+        public IActionResult getCanciones()
+        {
+            var cancionesLista = _contexto.CancionLista_reproduccion.ToList();
+            return Ok(cancionesLista);
+        }
+
+        [HttpGet]
+        [Route("byId/{idLista}")]
+        public IActionResult getCancionesById(int idLista)
+        {
+            var cancionesLista = _contexto.CancionLista_reproduccion.Where(listaBD => listaBD.Lista_reproduccionId == idLista);            
+            return Ok(cancionesLista);
+        }
+
         [HttpPost]
         [Route("crear")]
         public IActionResult setCancionLista(CancionLista_reproduccion cancionLista)
