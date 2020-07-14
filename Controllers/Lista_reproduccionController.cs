@@ -47,12 +47,29 @@ namespace ApiRest.Controllers
             return Ok(list);
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult getListaById(int id)
+        {
+            var lista = _contexto.Listas_Reproduccion.Find(id);
+            if (lista == null)
+            {
+                return NotFound();
+            }
+            return Ok(lista);
+        }
+
         [HttpPost]
         [Route("crearLista")]
-        public void CrearLista_Reproduccion(Lista_reproduccion lista)
+        public IActionResult CrearLista_Reproduccion(Lista_reproduccion lista)
         {
             _contexto.Listas_Reproduccion.Add(lista);
             _contexto.SaveChanges();
+            CreatedAtAction(nameof(getListaById), new { lista.Id }, lista);
+            var nuevoLista = new Lista_reproduccion();
+            nuevoLista.Id = lista.Id;
+            nuevoLista.Nombre_lista = "Nueva";
+            return Ok(nuevoLista);
         }        
 
         [HttpDelete]

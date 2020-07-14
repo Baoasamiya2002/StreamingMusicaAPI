@@ -27,7 +27,7 @@ namespace ApiRest.Controllers
             _contexto.CancionLista_reproduccion.Add(cancionLista);
             _contexto.SaveChanges();   
             var lista = new Lista_reproduccion();
-            lista.Id = 1;
+            lista.Id = -1;
             return Ok(lista);
         }
 
@@ -41,7 +41,7 @@ namespace ApiRest.Controllers
             _contexto.CancionLista_reproduccion.Remove(cancionListaExistente);
             _contexto.SaveChanges();
             var lista = new Lista_reproduccion();
-            lista.Id = 1;
+            lista.Id = 0;
             return Ok(lista);
         }
     }
